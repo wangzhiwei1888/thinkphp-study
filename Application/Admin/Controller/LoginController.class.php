@@ -10,8 +10,8 @@ class LoginController extends Controller {
     public function index(){
     	if(session('adminUser')){
 
-    		$this->redirect('/demo/index.php?m=admin&c=index');
-    		// $this->redirect('/demo/admin.php?c=index');
+    		// $this->redirect('/demo/index.php?m=admin&c=index');
+    		$this->redirect('/demo/admin.php?c=index');
     	}
     	
     	return $this->display();
@@ -60,8 +60,8 @@ class LoginController extends Controller {
     public function loginout(){
 
     	session('adminUser',null);
-    	$this->redirect('/demo/index.php?m=admin&c=login');
-    	// $this->redirect('/demo/admin.php?c=login');
+    	// $this->redirect('/demo/index.php?m=admin&c=login');
+    	$this->redirect('/demo/admin.php?c=login');
     }
 
 }

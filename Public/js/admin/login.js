@@ -16,8 +16,8 @@ var login = {
 		// 	dialog.error('密码不能为空')
 		// }
 
-		var url = '/demo/index.php?m=admin&c=login&a=check';
-		// var url = '/demo/admin.php?c=login&a=check';
+		// var url = '/demo/index.php?m=admin&c=login&a=check';
+		var url = '/demo/admin.php?c=login&a=check';
 		var data = {'username':username,'password':password};
 		$.post(url,data,function(resp){
 			console.log(resp)
@@ -28,8 +28,8 @@ var login = {
 			}
 			else{
 
-				// return dialog.success('登录成功','/demo/admin.php?c=index');
-				return dialog.success('登录成功','/demo/index.php?m=admin&c=index');
+				return dialog.success('登录成功','/demo/admin.php?c=index');
+				// return dialog.success('登录成功','/demo/index.php?m=admin&c=index');
 			}
 			// console.log(data);
 
