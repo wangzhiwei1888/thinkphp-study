@@ -94,3 +94,35 @@ $('.singcms-edit').on('click',function(){
 
 })
 
+
+
+$("#button-listorder").on('click',function(){
+
+	var data = $("#singcms-listorder").serializeArray();
+	var postData = {};
+	$(data).each(function(i){
+
+		postData[this.name] = this.value;
+
+	})
+
+	console.log(data);
+
+	var url = SCOPE.listorder_url;
+	// var jump_url = SCOPE.jump_url;
+	$.post(url,postData,function(resp){
+
+		if(resp.status == 1){
+
+			//成功
+			return dialog.success(resp.message,resp['data']['jump_url']);
+		}
+		else{
+
+			//失败
+			return dialog.error(resp.message,resp['data']['jump_url']);
+		}
+
+
+	},'JSON')
+})

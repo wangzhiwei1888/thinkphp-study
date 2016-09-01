@@ -12,6 +12,8 @@ $(function() {
         'fileTypeExts': '*.gif; *.jpg; *.png',
         'onUploadSuccess' : function(file,data,response) {
             // response true ,false
+            console.log(file);
+            console.log(data);
             if(response) {
                 var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
 
