@@ -2,7 +2,7 @@
 namespace Common\Model;
 use Think\Model;
 
-class NewsModel extends Model{
+class NewsContentModel extends Model{
 
 	private $_db = '';
 
@@ -19,7 +19,5 @@ class NewsModel extends Model{
 		$data['create_time'] = time();
 		return $this->_db->add($data);
 	}
-
-	
 
 }

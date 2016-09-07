@@ -9,6 +9,38 @@ class ContentController extends CommonController {
 
    
    public function index(){
+        
+        $title = $_GET['title'];
+        $conds = array();
+        if($title){
+
+            $conds['title'] = $title;
+        }
+
+        if($_GET['catid']){
+
+            $conds['catid'] = intval($_GET['catid']);
+        }
+
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 1;
+
+        
+
+        $news = D('News')->getNews($conds,$page,$pageSize);
+        $count = D('News')->getNewsCount($conds);
+
+        $res = new \Think\Page($count,$pageSize);
+        $pageres = $res->show();
+
+        $this->assign('pageres',$pageres);
+        $this->assign('news',$news);
+
+
+        $webSiteMenu = D('Menu')->getBarMenus();
+        $this->assign('webSiteMenu',$webSiteMenu);
+        
+
     	$this->display();
     }
 
@@ -37,14 +69,28 @@ class ContentController extends CommonController {
     			return show(0,'content不存在');
     		}
 
-    		$newsid = D('News')->insert($_POST);
+    		$newsId = D('News')->insert($_POST);
 
-    		if($newsid){
+    		if($newsId){
 
     			$newsContentData['content'] = $_POST['content'];
     			$newsContentData['news_id'] = $newsId;
     			
-    		}
+                $cId = D('NewsContent')->insert($newsContentData);
+
+                if($cId){
+
+                    return show(1,'新增成功');
+                }
+                else{
+
+                    return show(1,'主表插入成功,辅表插入失败');
+
+                }
+    		}else{
+
+                return show(0,'新增失败');
+            }
 
     	}
     	else{
