@@ -58,4 +58,11 @@ class NewsModel extends Model{
 		return $this->_db->where($conditions)->count();
 	}
 
+	public function find($id){
+
+		// return 1;
+		return $this->_db->where('news_id='.$id)->find();
+	}
+
+
 }
